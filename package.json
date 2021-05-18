@@ -20,7 +20,9 @@
   "homepage": "https://github.com/DevAman-sudo/User-Authentication#readme",
   "dependencies": {
     "chalk": "^4.1.1",
+    "dotenv": "^9.0.2",
     "express": "^4.17.1",
-    "hbs": "^4.1.2"
+    "hbs": "^4.1.2",
+    "mysql": "^2.18.1"
   }
 }
