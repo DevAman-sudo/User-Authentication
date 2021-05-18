@@ -15,7 +15,7 @@ app.set("views" , viewsPath);
 app.use(express.static(staticPath));
 
 app.get('/' , (req , res) => {
-    res.render('index');
+    res.render('signup');
 });
 
 app.listen(port , () => {
