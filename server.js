@@ -4,7 +4,7 @@ const port = process.env.PORT || 5000;
 const hbs = require('hbs');
 const path = require('path');
 const chalk = require('chalk');
-const mysql = require('mysql');
+const admin = require("firebase-admin");
 require('dotenv').config();
 
 const staticPath = path.join(__dirname, '/public/');
@@ -16,16 +16,11 @@ app.set("views", viewsPath);
 
 app.use(express.static(staticPath));
 
-// MySql Database //
-const connection = mysql.createConnection({
-    host: 'b7611sz6ocjvqhcpjajb-mysql.services.clever-cloud.com',
-    user: 'uf1yomiwxhhdle30',
-    password: 'exQAhKHjekNN77NYzDzL',
-    database: 'b7611sz6ocjvqhcpjajb'
-});
-connection.connect((err) => {
-    if (err) throw err;
-    console.log('Connected!');
+// Firebase Admin //
+var serviceAccount = path.join(__dirname , "config.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
 });
 
 // App Routes //
