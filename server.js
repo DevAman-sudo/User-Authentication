@@ -1,6 +1,10 @@
 const express = require('express');
 const app = express();
+const passport = require('passport');
 const port = process.env.PORT || 5000;
+
+const initializePassport = require('./passport-config');
+initializePassport(passport);
 
 app.set('view engine', 'hbs');
 app.use(express.urlencoded({extended:false}));
