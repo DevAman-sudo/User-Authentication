@@ -1,8 +1,8 @@
 // DOM elements //
 const registerForm = document.getElementById('register-form');
-const username = document.getElementById('username');
-const email = document.getElementById('email');
-const password = document.getElementById('password');
+const username = document.getElementById('username').value;
+const email = document.getElementById('email').value;
+const password = document.getElementById('password').value;
 
 registerForm.addEventListener('submit', registerUser);
 
