@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const hbs = require('hbs');
+const bodyParser = require('body-parser');
 require('dotenv').config();
 const port = process.env.PORT || 5000;
 
@@ -11,6 +12,7 @@ const staticPath = path.join(__dirname , "/static/");
 
 // app middleware`s //
 app.set('view-engine', 'hbs');
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(staticPath));
 
 // app routes //

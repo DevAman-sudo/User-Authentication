@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/DevAman-sudo/User-Authentication#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "hbs": "^4.1.2",
