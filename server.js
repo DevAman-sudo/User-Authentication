@@ -21,7 +21,13 @@ app.get('/' , (req , res) => {
 });
 
 app.post('/' , (req , res) => {
-    res.redirect('register.hbs');
+    const username = req.body.username;
+    const email = req.body.email;
+    const password = req.body.password;
+    
+    console.log(username , email , password);
+    
+    res.redirect('/');
 });
 
 // listening to port //
