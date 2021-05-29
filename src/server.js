@@ -12,11 +12,11 @@ app.use(express.json());
 
 // app routes
 app.get('/' , (req , res) => {
-    res.send('welcome to the home page');
+    res.send(`<a href="/register">welcome to the home page</a>`);
 });
 
 app.get('/register' , (req , res) => {
-    res.render('register');
+    res.render('register.hbs');
 });
 
 app.post('/register' , async (req , res) => {
