@@ -46,7 +46,9 @@ app.post('/register' , async (req , res) => {
                 password: password,
                 confirmpassword: Cpassword
             });
-            res.send('SUCCESS');
+            const registered = await registerUser.save();
+            
+            res.status(201).send('SUCCESS');
             
         } else {
             res.send('password didn`t matched');
