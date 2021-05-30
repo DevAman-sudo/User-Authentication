@@ -14,7 +14,7 @@ app.use(express.json());
 app.use( express.urlencoded({ extended: true }) );
 
 // mongodb database connection
-mongoose.connect(`${process.env.CONFIG}/devdb` , {
+mongoose.connect(`mongodb://192.168.0.100/devdb` , {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true
