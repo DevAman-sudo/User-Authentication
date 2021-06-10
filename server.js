@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 const path = require('path');
 const hbs = require('hbs');
 const Register = require('./model/data');
+require('dotenv').config();
+const configDB = process.env.CONFIG;
 const port = process.env.PORT || 5000;
 
 app.use(express.static(path.join(__dirname , '/public')));
@@ -12,7 +14,8 @@ app.use( express.urlencoded({ extended: true }) );
 app.set('view-engine' , 'hbs');
 
 // database connection
-mongoose.connect('mongodb://192.168.0.100/devaman' ,
+mongoose.connect(`mongodb://192.168.0.100/devaman` ,
+// mongoose.connect(`https://'${configDB}'/devaman` ,
 { useNewUrlParser: true ,
   useUnifiedTopology: true
 }, (err) => {
