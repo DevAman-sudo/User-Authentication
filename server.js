@@ -18,12 +18,10 @@ mongoose.connect(`mongodb://192.168.0.100/devaman` ,
 // mongoose.connect(`https://'${configDB}'/devaman` ,
 { useNewUrlParser: true ,
   useUnifiedTopology: true
-}, (err) => {
-    if (err) {
-        console.log(`database error found => ${err}`);
-    } else {
-        console.log('connected');
-    }
+}).then( () => {
+    console.log('connected');
+}).catch( (error) => {
+    console.log(`database error found ${error}`);
 });
 
 app.get('/' , (req , res) => {
