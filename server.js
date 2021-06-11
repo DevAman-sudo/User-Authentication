@@ -17,7 +17,7 @@ app.set('view-engine', 'hbs');
 
 // database connection
 // mongoose.connect(`mongodb://192.168.0.100/devaman`,
-mongoose.connect(`mongodb+srv://DevAman:${PASS}@cluster0.tlrz1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority` ,
+mongoose.connect(`mongodb+srv://DevAman:${PASS}@cluster0.tlrz1.mongodb.net/helloworld?retryWrites=true&w=majority` ,
     {
         useNewUrlParser: true,
         useUnifiedTopology: true
