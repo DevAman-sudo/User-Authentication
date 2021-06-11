@@ -4,6 +4,10 @@ const userSchema = new mongoose.Schema({
     task: {
         type: String,
         require: true
+    },
+    date: {
+        type: Date,
+        default: Date.now
     }
 });
 
