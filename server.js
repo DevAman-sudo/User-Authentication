@@ -51,6 +51,18 @@ app.post('/', async (req, res) => {
 
 });
 
+const readDocument = async () => {
+    try {
+        
+        const result = await Register.find();
+        console.log(result);
+        
+    } catch(error) {
+        console.log(`read document error found => ${error}`);
+    }
+};
+readDocument();
+
 app.listen(port, () => {
     console.log('app is running on port 5000');
 });
