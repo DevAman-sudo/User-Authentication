@@ -4,6 +4,7 @@ const app = express();
 const mongoose = require('mongoose');
 const path = require('path');
 const hbs = require('hbs');
+const validator = require('validator');
 require('dotenv').config( {
     path: path.join(__dirname, '/.env')});
 
@@ -22,7 +23,8 @@ app.set('view-engine', 'hbs');
 mongoose.connect(`mongodb+srv://DevAman:${pass}@cluster0.tlrz1.mongodb.net/helloworld?retryWrites=true&w=majority`,
     {
         useNewUrlParser: true,
-        useUnifiedTopology: true
+        useUnifiedTopology: true,
+        useCreateIndex: true
     }).then(() => {
         console.log('database connected');
     }).catch((error) => {
