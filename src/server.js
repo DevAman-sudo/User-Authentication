@@ -6,7 +6,8 @@ const path = require('path');
 const hbs = require('hbs');
 const validator = require('validator');
 require('dotenv').config( {
-    path: path.join(__dirname, '/.env')});
+    path: path.join(__dirname, '/.env')
+});
 
 // variables
 const port = process.env.PORT || 5000;
@@ -20,7 +21,8 @@ app.use(express.urlencoded({
 app.set('view-engine', 'hbs');
 
 // database connection
-mongoose.connect(`mongodb+srv://DevAman:${pass}@cluster0.tlrz1.mongodb.net/helloworld?retryWrites=true&w=majority`,
+mongoose.connect('mongodb://192.168.0.100/helloworld',
+// mongoose.connect(`mongodb+srv://DevAman:${pass}@cluster0.tlrz1.mongodb.net/helloworld?retryWrites=true&w=majority`,
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,
@@ -30,6 +32,10 @@ mongoose.connect(`mongodb+srv://DevAman:${pass}@cluster0.tlrz1.mongodb.net/hello
     }).catch((error) => {
         console.log(`database error found ${error}`);
     });
+    
+// app routes
+const Router = require('./routes/router');
+app.use(Router);
 
 // starting server
 app.listen(port, async (error) => {
