@@ -25,10 +25,10 @@ router.post('/signup', (req, res) => {
                     password: Password,
                     confirm_password: Confirm_password
                 });
-                
+
                 // JWT auth tokens
                 const token = await registerUser.generateAuthToken();
-                
+
                 const registered = await registerUser.save();
 
                 res.status(201).render('login.hbs');
@@ -59,9 +59,14 @@ router.post('/login', async (req, res) => {
         const userData = await Register.findOne({
             email: email
         });
-        const isMatch = await bcrypt.compare(password , userData.password);
+        
+        // comparing hashed password with user password
+        const isMatch = await bcrypt.compare(password, userData.password);
 
-        if ( isMatch ) {
+        // JWT auth tokens
+        const token = await userData.generateAuthToken();
+
+        if (isMatch) {
             res.status(201).send(userData);
         } else {
             res.send('password didnt matched');
