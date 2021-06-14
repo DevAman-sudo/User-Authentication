@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const Register = require('../models/schema');
+const bcrypt = require('bcryptjs');
 const hbs = require('hbs');
 const router = express();
 
@@ -54,9 +55,9 @@ router.post('/login', async (req, res) => {
         const userData = await Register.findOne({
             email: email
         });
-        console.log(userData);
+        const isMatch = await bcrypt.compare(password , userData.password);
 
-        if (userData.password === password) {
+        if ( isMatch ) {
             res.status(201).send(userData);
         } else {
             res.send('password didnt matched');

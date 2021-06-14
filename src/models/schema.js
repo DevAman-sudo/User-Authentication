@@ -48,6 +48,7 @@ userSchema.pre("save" , async function() {
     
     if (this.isModified("password")) {
         this.password = await bcrypt.hash(this.password , 10);
+        this.confirm_password = undefined;
     }
     
 });
