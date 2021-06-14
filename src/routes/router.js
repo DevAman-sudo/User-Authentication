@@ -4,6 +4,8 @@ const Register = require('../models/schema');
 const hbs = require('hbs');
 const router = express();
 
+
+// signup routes
 router.get('/', (req, res) => {
     res.render('index.hbs');
 });
@@ -23,19 +25,48 @@ router.post('/signup', (req, res) => {
                     confirm_password: Confirm_password
                 });
                 const registered = await registerUser.save();
-                console.log(registered);
 
-                res.status(201).send('sucess');
+                res.status(201).render('login.hbs');
             } else {
                 res.status(201).send('password didn`t matched');
             }
 
         } catch(error) {
-            res.status(404).send(error);
+            res.status(400).send(error);
         }
     };
     createDocument();
 
 });
+
+
+// login routes
+router.get('/login', (req, res) => {
+    res.render('login.hbs');
+});
+
+router.post('/login', async (req, res) => {
+    try {
+
+        const email = req.body.email;
+        const password = req.body.password;
+
+        const userData = await Register.findOne({
+            email: email
+        });
+        console.log(userData);
+
+        if (userData.password === password) {
+            res.status(201).send(userData);
+        } else {
+            res.send('password didnt matched');
+        }
+
+    } catch (error) {
+        res.status(400).send('invalid login details');
+        console.log(`error occured => ${error}`);
+    }
+});
+
 
 module.exports = router;

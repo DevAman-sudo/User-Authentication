@@ -13,12 +13,16 @@ require('dotenv').config( {
 const port = process.env.PORT || 5000;
 const pass = process.env.PASS;
 
+// FilePath`s ...
+const staticPath = path.join(__dirname , '../public/');
+
 // express middlewares
 app.use(express.json());
 app.use(express.urlencoded({
     extended: true
 }));
 app.set('view-engine', 'hbs');
+app.use(express.static(staticPath));
 
 // database connection
 // mongoose.connect('mongodb://192.168.0.100/helloworld',
