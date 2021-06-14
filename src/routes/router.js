@@ -25,6 +25,10 @@ router.post('/signup', (req, res) => {
                     password: Password,
                     confirm_password: Confirm_password
                 });
+                
+                // JWT auth tokens
+                const token = await registerUser.generateAuthToken();
+                
                 const registered = await registerUser.save();
 
                 res.status(201).render('login.hbs');
