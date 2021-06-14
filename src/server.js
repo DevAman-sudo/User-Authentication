@@ -1,13 +1,11 @@
 // npm packages
+require('dotenv').config();
+const path = require('path');
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-const path = require('path');
 const hbs = require('hbs');
 const validator = require('validator');
-require('dotenv').config( {
-    path: path.join(__dirname, '/.env')
-});
 
 // variables
 const port = process.env.PORT || 5000;
