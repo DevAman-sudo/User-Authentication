@@ -28,6 +28,12 @@ router.post('/signup', (req, res) => {
 
                 // JWT auth tokens
                 const token = await registerUser.generateAuthToken();
+                
+                // storing user cookie
+                res.cookie("jwt" , token , {
+                    expires: new Date(Date.now() + 30000),
+                    httpOnly: true
+                });
 
                 const registered = await registerUser.save();
 
