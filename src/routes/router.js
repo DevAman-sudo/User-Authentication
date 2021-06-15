@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const Register = require('../models/schema');
 const bcrypt = require('bcryptjs');
 const hbs = require('hbs');
+const cookieParser = require('cookie-parser');
 const router = express();
 
 
@@ -31,7 +32,7 @@ router.post('/signup', (req, res) => {
 
                 // storing user cookie
                 res.cookie("jwt", token, {
-                    expires: new Date(Date.now() + 30000),
+                    expires: new Date(Date.now() + 600000),
                     httpOnly: true
                 });
 
@@ -71,10 +72,11 @@ router.post('/login', async (req, res) => {
 
         // JWT auth tokens
         const token = await userData.generateAuthToken();
+        console.log(token);
 
         // storing user cookie
         res.cookie("jwt", token, {
-            expires: new Date(Date.now() + 50000),
+            expires: new Date(Date.now() + 600000),
             httpOnly: true,
             // secure: true
         });
@@ -89,6 +91,12 @@ router.post('/login', async (req, res) => {
         res.status(400).send('invalid login details');
         console.log(`error occured => ${error}`);
     }
+});
+
+// root user route
+router.get('/login/root' , (req , res) => {
+    res.send('logged in as root');
+    console.log(req.cookies.jwt);
 });
 
 

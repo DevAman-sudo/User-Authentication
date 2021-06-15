@@ -6,6 +6,7 @@ const app = express();
 const mongoose = require('mongoose');
 const hbs = require('hbs');
 const validator = require('validator');
+const cookieParser = require('cookie-parser');
 
 // variables
 const port = process.env.PORT || 5000;
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({
     extended: true
 }));
+app.use(cookieParser());
 app.set('view-engine', 'hbs');
 app.use(express.static(staticPath));
 
