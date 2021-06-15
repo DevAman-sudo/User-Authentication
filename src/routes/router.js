@@ -103,9 +103,12 @@ router.get('/logout' , auth , async (req , res) => {
     try {
         
         // removing cookie from database
-        req.user.tokens = req.user.tokens.filter( (currentToken) => {
-            return currentToken.token !== req.token;
-        });
+        // req.user.tokens = req.user.tokens.filter( (currentToken) => {
+            // return currentToken.token !== req.token;
+        // });
+        
+        // logout from all devices
+        req.user.tokens = [];
         
         // removing cookie from client machine
         res.clearCookie("jwt");
