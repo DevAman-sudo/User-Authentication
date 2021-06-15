@@ -28,9 +28,9 @@ router.post('/signup', (req, res) => {
 
                 // JWT auth tokens
                 const token = await registerUser.generateAuthToken();
-                
+
                 // storing user cookie
-                res.cookie("jwt" , token , {
+                res.cookie("jwt", token, {
                     expires: new Date(Date.now() + 30000),
                     httpOnly: true
                 });
@@ -65,12 +65,19 @@ router.post('/login', async (req, res) => {
         const userData = await Register.findOne({
             email: email
         });
-        
+
         // comparing hashed password with user password
         const isMatch = await bcrypt.compare(password, userData.password);
 
         // JWT auth tokens
         const token = await userData.generateAuthToken();
+
+        // storing user cookie
+        res.cookie("jwt", token, {
+            expires: new Date(Date.now() + 50000),
+            httpOnly: true,
+            // secure: true
+        });
 
         if (isMatch) {
             res.status(201).send(userData);
