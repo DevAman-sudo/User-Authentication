@@ -94,8 +94,21 @@ router.post('/login', async (req, res) => {
 });
 
 // root user route
-router.get('/login/root' , auth , (req , res) => {
+router.get('/root' , auth , (req , res) => {
     res.send('logged in as root');
+});
+
+router.get('/logout' , auth , async (req , res) => {
+    try {
+        
+        console.log(req.user);
+        res.clearCookie("jwt");
+        await req.user.save();
+        res.render('login.hbs');
+        
+    } catch (error) {
+        res.status(500).send(`logout route error => ${error}`);
+    }
 });
 
 
