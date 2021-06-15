@@ -73,7 +73,6 @@ router.post('/login', async (req, res) => {
 
         // JWT auth tokens
         const token = await userData.generateAuthToken();
-        console.log(token);
 
         // storing user cookie
         res.cookie("jwt", token, {
@@ -97,7 +96,6 @@ router.post('/login', async (req, res) => {
 // root user route
 router.get('/login/root' , auth , (req , res) => {
     res.send('logged in as root');
-    console.log(req.cookies.jwt);
 });
 
 
