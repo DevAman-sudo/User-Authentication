@@ -4,6 +4,7 @@ const Register = require('../models/schema');
 const bcrypt = require('bcryptjs');
 const hbs = require('hbs');
 const cookieParser = require('cookie-parser');
+const auth = require('../middleware/auth');
 const router = express();
 
 
@@ -94,7 +95,7 @@ router.post('/login', async (req, res) => {
 });
 
 // root user route
-router.get('/login/root' , (req , res) => {
+router.get('/login/root' , auth , (req , res) => {
     res.send('logged in as root');
     console.log(req.cookies.jwt);
 });
