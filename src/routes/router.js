@@ -6,6 +6,7 @@ const hbs = require('hbs');
 const cookieParser = require('cookie-parser');
 const auth = require('../middleware/auth');
 const router = express();
+// router.use(cookieParser());
 
 
 // signup routes
@@ -13,7 +14,7 @@ router.get('/', (req, res) => {
     res.render('index.hbs');
 });
 
-router.post('/signup', (req, res) => {
+router.post('/', (req, res) => {
 
     const createDocument = async () => {
         try {
@@ -39,7 +40,7 @@ router.post('/signup', (req, res) => {
 
                 const registered = await registerUser.save();
 
-                res.status(201).render('login.hbs');
+                res.status(201).redirect('/login');
             } else {
                 res.status(201).send('password didn`t matched');
             }
@@ -101,7 +102,12 @@ router.get('/root' , auth , (req , res) => {
 router.get('/logout' , auth , async (req , res) => {
     try {
         
-        console.log(req.user);
+        // removing cookie from database
+        req.user.tokens = req.user.tokens.filter( (currentToken) => {
+            return currentToken.token !== req.token;
+        });
+        
+        // removing cookie from client machine
         res.clearCookie("jwt");
         await req.user.save();
         res.render('login.hbs');
