@@ -9,19 +9,21 @@
 </head>
 <body>
 
-    <h1>Log In</h1>
-    <form class="form" action="/login" method="post">
+    <h1>Sign Up Account</h1>
+    <form class="form" action="/signup" method="post">
+        <input class="input" name="username" type="text" placeholder="username" required />
         <input class="input" name="email" type="email" placeholder="email address" required />
         <input class="input" name="password" type="password" placeholder="password" required />
+        <input class="input" name="confirm_password" type="password" placeholder="confirm password" required />
         <div class="container">
             <button class="button" type="submit">submit</button>
-            <button class="button" id="signup">Sign Up</button>
+            <button class="button" id="login">log in</button>
         </div>
     </form>
     
     <script>
-        document.getElementById('signup').addEventListener('click' , () => {
-            window.location = "/signup";
+        document.getElementById('login').addEventListener('click' , () => {
+            window.location = "/login";
         });
     </script>
 

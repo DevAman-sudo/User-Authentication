@@ -15,7 +15,7 @@ router.get('/' , (req , res) => {
 
 // signup routes ...
 router.get('/signup', (req, res) => {
-    res.render('index.hbs');
+    res.render('signup.hbs');
 });
 
 // signup post routes ...
