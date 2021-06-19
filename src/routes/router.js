@@ -1,3 +1,4 @@
+// npm packages ...
 const express = require('express');
 const mongoose = require('mongoose');
 const Register = require('../models/schema');
@@ -6,15 +7,19 @@ const hbs = require('hbs');
 const cookieParser = require('cookie-parser');
 const auth = require('../middleware/auth');
 const router = express();
-// router.use(cookieParser());
 
+// index routes ...
+router.get('/' , (req , res) => {
+    res.status(200).render('index.hbs');
+});
 
-// signup routes
-router.get('/', (req, res) => {
+// signup routes ...
+router.get('/signup', (req, res) => {
     res.render('index.hbs');
 });
 
-router.post('/', (req, res) => {
+// signup post routes ...
+router.post('/signup', (req, res) => {
 
     const createDocument = async () => {
         try {
@@ -54,11 +59,12 @@ router.post('/', (req, res) => {
 });
 
 
-// login routes
+// login routes ...
 router.get('/login', (req, res) => {
     res.render('login.hbs');
 });
 
+// login post routes ...
 router.post('/login', async (req, res) => {
     try {
 
@@ -94,11 +100,12 @@ router.post('/login', async (req, res) => {
     }
 });
 
-// root user route
+// root user route ...
 router.get('/root' , auth , (req , res) => {
-    res.send('logged in as root');
+    res.status(200).send('logged in as root');
 });
 
+// logout routes ...
 router.get('/logout' , auth , async (req , res) => {
     try {
         
