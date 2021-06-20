@@ -34,15 +34,6 @@ router.post('/signup', (req, res) => {
                     confirm_password: Confirm_password
                 });
 
-                // JWT auth tokens
-                const token = await registerUser.generateAuthToken();
-
-                // storing user cookie
-                res.cookie("jwt", token, {
-                    expires: new Date(Date.now() + 600000),
-                    httpOnly: true
-                });
-
                 const registered = await registerUser.save();
 
                 res.status(201).redirect('/login');
@@ -89,7 +80,7 @@ router.post('/login', async (req, res) => {
         });
 
         if (isMatch) {
-            res.status(201).send(userData);
+            res.status(201).redirect('/root');
         } else {
             res.send('password didnt matched');
         }
@@ -102,7 +93,7 @@ router.post('/login', async (req, res) => {
 
 // root user route ...
 router.get('/root' , auth , (req , res) => {
-    res.status(200).send('logged in as root');
+    res.status(200).render('root.hbs');
 });
 
 // logout routes ...
