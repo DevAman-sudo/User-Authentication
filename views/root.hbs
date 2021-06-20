@@ -15,7 +15,20 @@
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                line-height: 5rem;
+            }
+            
+            .user_data {
+                width: 100vw;
+                min-height: 20vh;
+                height: auto;
+                display: flex;
+                flex-direction: column;
+                overflow: hidden;
+                font-size: 0.7rem;
+            }
+            
+            .user_data p {
+                margin: 0.5rem auto;
             }
             
         </style>
@@ -24,8 +37,12 @@
     <body>
         
         <h1>logged in as root</h1>
-        
-        {{data}}
+
+        <div class="user_data">
+            <p> {{ username }} </p>
+            <p> {{ email }} </p>
+            <p> {{ date }} </p>
+        </div>
         
         <a href="/logout"> log out</a>
         
