@@ -91,7 +91,7 @@ router.post('/login', async (req, res) => {
     }
 });
 
-// root user route ...
+// root user auth route ...
 router.get('/root' , auth , (req , res) => {
     res.status(200).render('root.hbs');
 });

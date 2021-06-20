@@ -14,7 +14,7 @@ const auth = async (req, res, next) => {
         next();
 
     } catch (error) {
-        res.status(400).send(`middleware auth error => ${error}`);
+        res.status(400).render('login.hbs' , {'message' : 'user must login first'});
     }
 };
 
