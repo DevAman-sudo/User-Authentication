@@ -80,7 +80,7 @@ router.post('/login', async (req, res) => {
         });
 
         if (isMatch) {
-            res.status(201).redirect('/root');
+            res.status(201).render('root.hbs' , { 'data': userData });
         } else {
             res.send('password didnt matched');
         }
