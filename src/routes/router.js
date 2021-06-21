@@ -106,9 +106,23 @@ router.get('/logout' , auth , async (req , res) => {
     try {
         
         // removing cookie from database
-        // req.user.tokens = req.user.tokens.filter( (currentToken) => {
-            // return currentToken.token !== req.token;
-        // });
+        req.user.tokens = req.user.tokens.filter( (currentToken) => {
+            return currentToken.token !== req.token;
+        });
+        
+        // removing cookie from client machine
+        res.clearCookie("jwt");
+        await req.user.save();
+        res.render('login.hbs');
+        
+    } catch (error) {
+        res.status(500).send(`logout route error => ${error}`);
+    }
+});
+
+// logout routes ...
+router.get('/logoutall' , auth , async (req , res) => {
+    try {
         
         // logout from all devices
         req.user.tokens = [];
@@ -122,6 +136,7 @@ router.get('/logout' , auth , async (req , res) => {
         res.status(500).send(`logout route error => ${error}`);
     }
 });
+
 
 
 module.exports = router;
