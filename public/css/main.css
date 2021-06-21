@@ -1,9 +1,13 @@
-* ,
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+*,
 *::after ,
 *::before {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 0.08rem;
+    word-spacing: 0.2rem;
 }
 
 body {
